@@ -401,25 +401,176 @@ AddEventHandler('wd_audiodev:playSpeechFromEntity', function(data)
         title = 'Select Speech Params',
         menu = 'audio_bank_options_menu',
         options = {
-            {
-                title = 'speech_params_allow_repeat',
-                description = 'Allow the speech to repeat',
-                event = 'wd_audiodev:playSpeechWithParams',
-                args = {bank_name = bank_name, sound_hash = sound_hash, speech_params = 'speech_params_allow_repeat'}
-            },
-            {
-                title = 'speech_params_force',
-                description = 'Force the speech to play',
-                event = 'wd_audiodev:playSpeechWithParams',
-                args = {bank_name = bank_name, sound_hash = sound_hash, speech_params = 'speech_params_force'}
-            },
-            {
-                title = 'speech_params_shouted',
-                description = 'Play the speech as shouted',
-                event = 'wd_audiodev:playSpeechWithParams',
-                args = {bank_name = bank_name, sound_hash = sound_hash, speech_params = 'speech_params_shouted'}
-            },
-            -- Add more speech params options as needed
+                {
+                    title = 'speech_params_allow_repeat',
+                    description = 'Allow the speech to repeat',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_allow_repeat'
+                    }
+                },
+                {
+                    title = 'speech_params_force',
+                    description = 'Force the speech to play',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force'
+                    }
+                },
+                {
+                    title = 'speech_params_shouted',
+                    description = 'Play the speech as shouted',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_shouted'
+                    }
+                },
+                {
+                    title = 'speech_params_force_shouted_clear',
+                    description = 'Force the speech to play as shouted and clear',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_shouted_clear'
+                    }
+                },
+                {
+                    title = 'Speech_Params_Beat_Shouted_Clear_AllowPlayAfterDeath',
+                    description = 'Play the speech as shouted, clear, and allow play after death (uses subtitles if available)',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'Speech_Params_Beat_Shouted_Clear_AllowPlayAfterDeath'
+                    }
+                },
+                {
+                    title = 'speech_params_standard',
+                    description = 'Play the speech with standard parameters',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_standard'
+                    }
+                },
+                {
+                    title = 'speech_params_force_shouted_critical',
+                    description = 'Force the speech to play as shouted and critical',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_shouted_critical'
+                    }
+                },
+                {
+                    title = 'speech_params_force_frontend',
+                    description = 'Force the speech to play on the frontend',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_frontend'
+                    }
+                },
+                {
+                    title = 'speech_params_force_normal_critical',
+                    description = 'Force the speech to play as normal and critical',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_normal_critical'
+                    }
+                },
+                {
+                    title = 'speech_params_shouted_critical',
+                    description = 'Play the speech as shouted and critical',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_shouted_critical'
+                    }
+                },
+                {
+                    title = 'speech_params_add_blip',
+                    description = 'Add a blip to the speech',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_add_blip'
+                    }
+                },
+                {
+                    title = 'speech_params_force_normal',
+                    description = 'Force the speech to play as normal',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_normal'
+                    }
+                },
+                {
+                    title = 'speech_params_add_blip_shouted_force',
+                    description = 'Add a blip to the speech, play as shouted, and force',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_add_blip_shouted_force'
+                    }
+                },
+                {
+                    title = 'speech_params_force_normal_clear',
+                    description = 'Force the speech to play as normal and clear',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_normal_clear'
+                    }
+                },
+                {
+                    title = 'speech_params_add_blip_shouted',
+                    description = 'Add a blip to the speech and play as shouted',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_add_blip_shouted'
+                    }
+                },
+                {
+                    title = 'speech_params_shouted_clear',
+                    description = 'Play the speech as shouted and clear',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_shouted_clear'
+                    }
+                },
+                {
+                    title = 'speech_params_force_shouted',
+                    description = 'Force the speech to play as shouted',
+                    event = 'wd_audiodev:playSpeechWithParams',
+                    args = {
+                        bank_name = bank_name,
+                        sound_hash = sound_hash,
+                        speech_params = 'speech_params_force_shouted'
+                    }
+                },
         }
     })
     lib.showContext('speech_params_menu')

@@ -14,6 +14,4 @@ client_scripts {
     'client/*.lua'
 }
 
-dependency 'rsg-core'
-
 lua54 'yes'
