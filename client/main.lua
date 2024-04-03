@@ -67,7 +67,7 @@ function openVoiceLineMenu()
         options = {
             {
                 title = 'CreateStream',
-                description = 'Create and test voice lines using CreateStream',
+                description = 'Start Audio using CreateStream',
                 menu = 'createstream_menu'
             },
             {
@@ -148,11 +148,6 @@ function openVoiceLineMenu()
                 title = 'Back',
                 description = 'Go back to the main menu',
                 menu = 'voiceline_menu'
-            },
-            {
-                title = 'Create Stream',
-                description = 'Test voice lines from the CreateStream category',
-                event = 'wd_audiodev:createStream'
             },
             {
                 title = 'Select Soundset',
@@ -477,44 +472,6 @@ AddEventHandler('wd_audiodev:playSpeechFromLocation', function(data)
         }
     })
     lib.showContext('speech_clipboard_menu')
-end)
-AddEventHandler('wd_audiodev:createStream', function()
-    local soundSet = lib.inputDialog('Enter soundSet', {'soundSet'})
-    local streamName = lib.inputDialog('Enter streamName', {'streamName'})
-
-    if soundSet and streamName then
-        local timeout = 0
-        while not LoadStream(soundSet[1], streamName[1]) do
-            Citizen.Wait(1)
-            timeout = timeout + 1
-            if timeout > 200 then
-                break
-            end
-        end
-        local streamedMusic = Citizen.InvokeNative(0x0556C784FA056628, soundSet[1], streamName[1])
-        PlayStreamFromPed(PlayerPedId(), streamedMusic)
-
-        lib.registerContext({
-            id = 'sound_options_menu',
-            title = 'Sound Options',
-            menu = 'createstream_menu',
-            options = {
-                {
-                    title = 'Stop Audio',
-                    description = 'Stop the currently playing soundset',
-                    event = 'wd_audiodev:stopAudio',
-                    args = {streamedMusic = streamedMusic}
-                },
-                {
-                    title = 'Copy To Clipboard',
-                    description = 'Copy the code snippet to the clipboard',
-                    event = 'wd_audiodev:copyToClipboard',
-                    args = {soundSet = soundSet[1], streamName = streamName[1]}
-                }
-            }
-        })
-        lib.showContext('sound_options_menu')
-    end
 end)
 
 AddEventHandler('wd_audiodev:musicEvent', function(data)
