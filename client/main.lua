@@ -71,7 +71,7 @@ function openVoiceLineMenu()
                 menu = 'createstream_menu'
             },
             {
-                title = 'Music Events',
+                title = 'Music Events (MEDIUM LOAD)',
                 description = 'Start, stop or mix OST from the game',
                 menu = 'music_events_menu'
             },
@@ -81,7 +81,7 @@ function openVoiceLineMenu()
                 menu = 'frontend_soundsets_menu'
             },
             {
-                title = 'Audio Banks',
+                title = 'Audio Banks (LONG LOAD)',
                 description = 'Play ambient speech from audio banks',
                 menu = 'audio_banks_menu'
             },
