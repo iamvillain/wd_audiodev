@@ -89,11 +89,6 @@ function openVoiceLineMenu()
                 title = 'Audio Flags',
                 description = 'Set or unset various audio flags',
                 menu = 'audio_flags_menu'
-            },
-            {
-                title = 'Close',
-                description = 'Close the menu',
-                close = true
             }
         }
     })
