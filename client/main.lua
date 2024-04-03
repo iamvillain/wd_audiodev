@@ -50,7 +50,7 @@ local function play_ambient_speech_from_position(x,y,z,sound_ref_string,sound_na
 end
 
 ----------------
-Citizen.CreateThread(function()
+CreateThread(function()
     cached_createstream = createStream
     cached_music_events = categorizeMusicEvents(music_events)
     cached_frontend_soundsets = frontend_soundsets
@@ -331,14 +331,14 @@ AddEventHandler('wd_audiodev:playSound', function(data)
 
     local timeout = 0
     while not LoadStream(soundSet, streamName) do
-        Citizen.Wait(1)
+        Wait(1)
         timeout = timeout + 1
         if timeout > 200 then
             break
         end
     end
     local streamedMusic = Citizen.InvokeNative(0x0556C784FA056628, soundSet, streamName)
-    PlayStreamFromPed(PlayerPedId(), streamedMusic)
+    PlayStreamFromPed(cache.ped, streamedMusic)
 
     lib.registerContext({
         id = 'sound_options_menu',
@@ -581,7 +581,7 @@ AddEventHandler('wd_audiodev:playSpeechWithParams', function(data)
     local sound_hash = data.sound_hash
     local speech_params = data.speech_params
 
-    play_ambient_speech_from_entity(PlayerPedId(), bank_name, sound_hash, speech_params, 0)
+    play_ambient_speech_from_entity(cache.ped, bank_name, sound_hash, speech_params, 0)
     lib.registerContext({
         id = 'speech_clipboard_menu',
         title = 'AudioBank Options',
@@ -603,7 +603,7 @@ AddEventHandler('wd_audiodev:playSpeechFromLocation', function(data)
     local sound_hash = data.sound_hash
 
     if sound_hash then
-        local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
+        local x, y, z = table.unpack(GetEntityCoords(cache.ped))
         print(bank_name, sound_hash)
         play_ambient_speech_from_position(x, y, z, bank_name, sound_hash, 0)
     else
@@ -817,14 +817,14 @@ AddEventHandler('wd_audiodev:copyToClipboard', function(data)
             local streamName = "%s"
             local timeout = 0
             while not LoadStream(soundSet, streamName) do
-                Citizen.Wait(1)
+                Wait(1)
                 timeout = timeout + 1
                 if timeout > 200 then
                     break
                 end
             end
             local streamedMusic = Citizen.InvokeNative(0x0556C784FA056628, soundSet, streamName)
-            PlayStreamFromPed(PlayerPedId(), streamedMusic)
+            PlayStreamFromPed(cache.ped, streamedMusic)
         ]]
         lib.setClipboard(string.format(format, soundSet, streamName))
         lib.notify({
@@ -885,7 +885,7 @@ AddEventHandler('wd_audiodev:copyToClipboard', function(data)
     elseif bank_name and sound_hash and speech_params then
         local format = [[
             -- Play speech from entity with selected speech params
-            play_ambient_speech_from_entity(PlayerPedId(), "%s", "%s", "%s", 0)
+            play_ambient_speech_from_entity(cache.ped, "%s", "%s", "%s", 0)
 
         ]]
         lib.setClipboard(string.format(format, bank_name, sound_hash, speech_params))
@@ -897,7 +897,7 @@ AddEventHandler('wd_audiodev:copyToClipboard', function(data)
     elseif bank_name and sound_hash then
             local format = [[
                 -- Play speech from location
-                local x, y, z = table.unpack(GetEntityCoords(PlayerPedId()))
+                local x, y, z = table.unpack(GetEntityCoords(cache.ped))
                 play_ambient_speech_from_position(x, y, z, "%s", "%s", 0)
             ]]
             lib.setClipboard(string.format(format, bank_name, sound_hash))
